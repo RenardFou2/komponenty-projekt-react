@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSpeakerContext } from './contextAndTypes/SpeakerContext.tsx';
 import { useConferenceContext } from './contextAndTypes/ConferenceContext.tsx';
-import { useNavigate } from 'react-router-dom';
+import Alert from './prezentacyjne/AlertPoppup.js';
 
 const CreateConferenceComponent: React.FC = () => {
   const { speakers } = useSpeakerContext();
@@ -14,9 +14,16 @@ const CreateConferenceComponent: React.FC = () => {
   const [selectedSpeakers, setSelectedSpeakers] = useState<number[]>([]);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const navigate = useNavigate(); 
+  const [showAlert, setShowAlert] = useState(false);
 
   document.title = `Tworzenie konferencji`
+
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
+  const triggerAlert = () => {
+    setShowAlert(true);
+  };
 
   const handleSpeakerCheckboxChange = (speakerId: number) => {
     setSelectedSpeakers((prevSelectedSpeakers) => {
@@ -90,8 +97,7 @@ const CreateConferenceComponent: React.FC = () => {
     };
 
     addConference(newConference);
-
-    navigate('/');
+    triggerAlert();
   }
   };
 
@@ -156,6 +162,8 @@ const CreateConferenceComponent: React.FC = () => {
       ))}
       <br />
       <button onClick={handleCreateConference}>Create Conference</button>
+      <br />
+      {showAlert && <Alert type="success" message="Conference created !" onClose={closeAlert} />}
     </div>
   );
 };

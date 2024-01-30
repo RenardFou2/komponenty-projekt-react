@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useSpeakerContext } from './contextAndTypes/SpeakerContext.tsx';
 import { useConferenceContext } from './contextAndTypes/ConferenceContext.tsx';
+import LinkButton from './prezentacyjne/LinkButton.js';
 
 const WelcomePage: React.FC = () => {
   const { speakers } = useSpeakerContext();
@@ -16,17 +16,8 @@ const WelcomePage: React.FC = () => {
         <br />
         {conferences.length} : Number of conferences
         <br />
-        <Link to="/speakers">
-            <button>
-                Manage speakers
-            </button>
-        </Link>
-        <Link to="/conferences">
-            <button>
-                Manage conferences
-            </button>
-        </Link>
-
+        <LinkButton label="Manage speakers" adres="/speakers" />
+        <LinkButton label="Manage conferences" adres="/conferences" />
     </div>
   );
 };

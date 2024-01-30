@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useConferenceContext } from './contextAndTypes/ConferenceContext.tsx';
+import LinkButton from './prezentacyjne/LinkButton.js';
 
 const ConferenceListComponent = () => {
   const { conferences } = useConferenceContext();
@@ -24,11 +24,7 @@ const ConferenceListComponent = () => {
         </li>
         ))}
         <br />
-        <Link to="/create-conference">
-            <button>
-                Add conference
-            </button>
-        </Link>
+        <LinkButton label="Add conference" adres="/create-conference" />
     </div>
   );
 };
