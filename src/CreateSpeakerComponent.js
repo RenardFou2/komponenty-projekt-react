@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSpeakerContext } from './SpeakerContext';
+import { useSpeakerContext } from './contextAndTypes/SpeakerContext';
 
 const AddSpeakerComponent = () => {
   const { addSpeaker } = useSpeakerContext();

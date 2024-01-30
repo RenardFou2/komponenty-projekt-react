@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { SpeakerProvider } from './SpeakerContext';
+import { ConferenceProvider } from './contextAndTypes/ConferenceContext.tsx';
+import { SpeakerProvider } from './contextAndTypes/SpeakerContext.tsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <SpeakerProvider>
+    <ConferenceProvider>
     <App />
+    </ConferenceProvider>
     </SpeakerProvider>
   </React.StrictMode>
 );

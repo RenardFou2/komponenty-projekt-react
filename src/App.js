@@ -1,18 +1,31 @@
 import './App.css';
-import { useSpeakerContext } from './SpeakerContext';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SpeakerListComponent from './SpeakerListComponent';
-import AddSpeakerComponent from './AddSpeakerComponent';
+import CustomizeSpeakerComponent from './CustomizeSpeakerComponent';
+import ConferenceListComponent from './ConferenceListComponent.js';
+import CreateConferenceComponent from './CreateConferenceComponent.tsx';
+import { SpeakerProvider } from './contextAndTypes/SpeakerContext.tsx';
+import  WelcomePage from './WelcomePage.tsx';
+import { ConferenceProvider } from './contextAndTypes/ConferenceContext.tsx';
 
 function App() {
-  
-  const {speakers} = useSpeakerContext();
 
   return (
-    <div className="App">
-      <h1>Conference Speakers</h1>
-      <SpeakerListComponent speakers={speakers} />
-      <AddSpeakerComponent />
-    </div>
+    <Router>
+      <SpeakerProvider>
+        <ConferenceProvider>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<WelcomePage />} />
+              <Route path="/speakers" element={<SpeakerListComponent />} />
+              <Route path="/speakers/customize/:id" element={<CustomizeSpeakerComponent />} />
+              <Route path="/conferences" element={<ConferenceListComponent />} />
+              <Route path="/create-conference" element={<CreateConferenceComponent />} />
+            </Routes>
+          </div>
+        </ConferenceProvider>
+      </SpeakerProvider>
+    </Router>
   );
 }
 

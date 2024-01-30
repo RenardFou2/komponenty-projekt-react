@@ -1,11 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSpeakerContext } from './contextAndTypes/SpeakerContext.tsx';
 
-const SpeakerListComponent = ({ speakers }) => {
+const SpeakerListComponent = () => {
+  const { speakers } = useSpeakerContext();
+
   return (
     <ul>
       {speakers.map((speaker) => (
         <li key={speaker.id}>
-          <strong>{speaker.name}</strong> - {speaker.topic}
+          <Link to={`/customize/${speaker.id}`}>{speaker.name}</Link> - {speaker.topic}
         </li>
       ))}
     </ul>
