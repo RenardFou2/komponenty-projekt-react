@@ -4,15 +4,17 @@ import { useSpeakerContext } from './contextAndTypes/SpeakerContext.tsx';
 
 const SpeakerListComponent = () => {
   const { speakers } = useSpeakerContext();
+  document.title = `Lista speakerów`
 
   return (
-    <ul>
+    <div style={{ textAlign: 'left', paddingLeft: '20px' }}>
+      <h2>List of Speakers</h2>
       {speakers.map((speaker) => (
         <li key={speaker.id}>
-          <Link to={`/customize/${speaker.id}`}>{speaker.name}</Link> - {speaker.topic}
+          <Link to={`/speakers/customize/${speaker.id}`}>{speaker.name}</Link> - {speaker.topic}
         </li>
       ))}
-    </ul>
+    </div>
   );
 };
 

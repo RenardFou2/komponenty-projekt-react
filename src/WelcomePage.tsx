@@ -6,9 +6,11 @@ import { useConferenceContext } from './contextAndTypes/ConferenceContext.tsx';
 const WelcomePage: React.FC = () => {
   const { speakers } = useSpeakerContext();
   const { conferences } = useConferenceContext();
+  
+  document.title = `Strona powitalna`
 
   return (
-    <div>
+    <div style={{ textAlign: 'left', paddingLeft: '20px' }}>
         <h2>Welcome Page</h2>
         {speakers.length} : Number of speakers
         <br />

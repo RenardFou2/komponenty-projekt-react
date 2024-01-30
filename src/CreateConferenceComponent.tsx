@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSpeakerContext } from './contextAndTypes/SpeakerContext.tsx';
 import { useConferenceContext } from './contextAndTypes/ConferenceContext.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const CreateConferenceComponent: React.FC = () => {
   const { speakers } = useSpeakerContext();
@@ -13,6 +14,9 @@ const CreateConferenceComponent: React.FC = () => {
   const [selectedSpeakers, setSelectedSpeakers] = useState<number[]>([]);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
+  const navigate = useNavigate(); 
+
+  document.title = `Tworzenie konferencji`
 
   const handleSpeakerCheckboxChange = (speakerId: number) => {
     setSelectedSpeakers((prevSelectedSpeakers) => {
@@ -87,15 +91,12 @@ const CreateConferenceComponent: React.FC = () => {
 
     addConference(newConference);
 
-    setConferenceName('');
-    setConferenceDate('');
-    setConferenceLocation('');
-    setSelectedSpeakers([]);
+    navigate('/');
   }
   };
 
   return (
-    <div>
+    <div style={{ textAlign: 'left', paddingLeft: '20px' }}>
       <h2>Create New Conference</h2>
       <label>
         Conference Name:
@@ -104,7 +105,7 @@ const CreateConferenceComponent: React.FC = () => {
           value={conferenceName}
           onChange={(e) => setConferenceName(e.target.value)}
         />
-        {errors.conferenceName && <span>{errors.conferenceName}</span>}
+        {errors.conferenceName && <span style={{color: 'red'}}>{errors.conferenceName}</span>}
       </label>
       <br />
       <label>
@@ -114,7 +115,7 @@ const CreateConferenceComponent: React.FC = () => {
           value={conferenceDate instanceof Date ? conferenceDate.toISOString().split('T')[0] : conferenceDate}
           onChange={(e) => setConferenceDate(e.target.value)}
         />
-        {errors.conferenceDate && <span>{errors.conferenceDate}</span>}
+        {errors.conferenceDate && <span style={{color: 'red'}}>{errors.conferenceDate}</span>}
       </label>
       <br />
       <label>
@@ -125,7 +126,7 @@ const CreateConferenceComponent: React.FC = () => {
           onChange={(e) => setConferenceLocation(e.target.value)}
         />
         {errors.conferenceLocation && (
-          <span>{errors.conferenceLocation}</span>
+          <span style={{color: 'red'}}>{errors.conferenceLocation}</span>
         )}
       </label>
       <br />
@@ -137,7 +138,7 @@ const CreateConferenceComponent: React.FC = () => {
           onChange={(e) => setConferenceEmail(e.target.value)}
         />
         {errors.conferenceEmail && (
-          <span>{errors.conferenceEmail}</span>
+          <span style={{color: 'red'}}>{errors.conferenceEmail}</span>
         )}
       </label>
       <br />

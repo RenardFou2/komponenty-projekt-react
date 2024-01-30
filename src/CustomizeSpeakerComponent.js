@@ -7,6 +7,8 @@ const CustomizeSpeakerComponent = () => {
     const { id } = useParams();
     const navigate = useNavigate(); 
   
+    document.title = `Edycja speakera`
+
     const speakerToCustomize = speakers.find((speaker) => speaker.id === parseInt(id, 10));
   
     const [customName, setCustomName] = useState(speakerToCustomize.name);
@@ -28,7 +30,7 @@ const CustomizeSpeakerComponent = () => {
     };
   
     return (
-      <div>
+      <div style={{ textAlign: 'left', paddingLeft: '20px' }}>
         <h2>Customize Speaker</h2>
         <label>
           Name:

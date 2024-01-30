@@ -4,9 +4,11 @@ import { useConferenceContext } from './contextAndTypes/ConferenceContext.tsx';
 
 const ConferenceListComponent = () => {
   const { conferences } = useConferenceContext();
+  
+  document.title = `Lista konferencji`
 
   return (
-    <ul>
+    <div style={{ textAlign: 'left', paddingLeft: '20px' }}>
         <h2>Conference List</h2>
       {conferences.map((conference) => (
         <li key={conference.id}>
@@ -27,7 +29,7 @@ const ConferenceListComponent = () => {
                 Add conference
             </button>
         </Link>
-    </ul>
+    </div>
   );
 };
 
